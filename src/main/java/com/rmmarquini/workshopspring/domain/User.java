@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Objects;
 
+// Using only the notation @Document also works, if the class name is the same as the collection
 @Document(collection="user")
 public class User implements Serializable {
 
@@ -19,6 +20,7 @@ public class User implements Serializable {
     public User() {}
 
     public User(String id, String name, String email) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;
