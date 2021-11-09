@@ -16,11 +16,13 @@ public class PostService {
     @Autowired
     private PostRepository repository;
 
-    public List<Post> findAll() { return repository.findAll(); }
-
     public Post findById(String id) {
         Optional<Post> post = repository.findById(id);
         return post.orElseThrow(() -> new ObjectNotFoundException("Post not founded."));
+    }
+
+    public List<Post> findByTitle(String text) {
+        return repository.searchTitle(text);
     }
 
 }
