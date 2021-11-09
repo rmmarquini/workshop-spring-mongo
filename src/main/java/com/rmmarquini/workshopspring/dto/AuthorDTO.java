@@ -4,6 +4,9 @@ import com.rmmarquini.workshopspring.domain.User;
 
 import java.io.Serializable;
 
+/**
+ * AuthorDTO is used to database denormalization
+ */
 public class AuthorDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

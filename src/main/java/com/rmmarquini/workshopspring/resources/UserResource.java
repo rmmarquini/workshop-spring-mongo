@@ -1,5 +1,6 @@
 package com.rmmarquini.workshopspring.resources;
 
+import com.rmmarquini.workshopspring.domain.Post;
 import com.rmmarquini.workshopspring.domain.User;
 import com.rmmarquini.workshopspring.dto.UserDTO;
 import com.rmmarquini.workshopspring.services.UserService;
@@ -29,6 +30,12 @@ public class UserResource {
                 .map(user -> new UserDTO(user))
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(lstDTO);
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> getUsersPosts(@PathVariable String id) {
+        User user = service.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 
     @GetMapping("/{id}")
