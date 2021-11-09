@@ -1,15 +1,25 @@
 package com.rmmarquini.workshopspring.resources.util;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class URL {
 
-    public static String decodeParam(String str) throws UnsupportedEncodingException {
+    public static String decodeParam(String str) {
+        return URLDecoder.decode(str, StandardCharsets.UTF_8);
+    }
+
+    public static Date convertDate(String textDate, Date defaultValue) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT-3"));
         try {
-            return URLDecoder.decode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            return "";
+            return sdf.parse(textDate);
+        } catch (ParseException e) {
+            return defaultValue;
         }
     }
 
